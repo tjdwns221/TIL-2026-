@@ -356,11 +356,229 @@ zero copy data transport = 데이터를 전송할때 cp없이 하는것 RDMA(rem
 container에 function을 설치한 후 연결해서 활용 MSA(micro service architecture)기반, service chining or service composition
 이것의 핵심수단이 hyper connetecdd
 
- # 정리
+ #### 정리
  미래 네트워크는 Hyper-connected와 Software-defined를 핵심으로 하며, SDN은 네트워크의 제어부와 전송부를 분리하여 중앙 제어와 자동화를 가능하게 한다. NFV는 네트워크 기능을 가상화하여 소프트웨어 기반으로 제공하며, SDI는 네트워크, 서버, 스토리지를 포함한 전체 인프라를 소프트웨어로 정의하는 개념이다. 이러한 기술은 Overlay Networking, VXLAN, Network Slicing과 결합되어 5G/6G 기반 Cloud-native 통신 인프라를 구성한다. Open RAN과 Edge Computing은 기지국과 서비스 처리 구조를 개방·분산화하며, Hyper-connected Networking은 AI, HPC, Cloud를 초고속으로 연결하는 미래 네트워크의 핵심 기반
 
 
 ### 6주차 1차 
+#### 디지털 데이터의 정의와 생성과정 이해, 데이터 엔지니어링의 주요단계와 역할
+
+DataLake, Connetecd -> Connected DataLake - 이번차시 핵심
+
+1. Data란?, Data Storage?
+   여기서 언급하는 data는 digital data
+
+   ### digital data
+   데이터 변환 과정 1. Pyhsical system 2. Transducer Sensor 3. Signal conditioning 4. Analog-Digital converter 5. computer
+   여기서 temporal한 데이터 양 조절 및 양자화로 얼마나 데이터를 촘촘히 볼지 정함
+
+Dark data : 만들어졌다가 사라지는것, 더 majority
+
+데이터가 중요한 이유는 정보가 담겨있고 이 정보를 해석하면 지식이 되고 지식을 학습하면 지능 지능이 모이면 현명해지기 때문
+
+데이터를 다루려면 라벨링을 해야함 - 자동화하려고 하지만 현재 인간이 직접 라벨링함
+
+hadoop : 데이터 양이 매우 커지면서 사용 - 텍스트 중심의 데이터 저렴하게 파일 시스템을 만들고 map reduce 원리를 통해 원하는 데이터 탐색
+
+data는 sql, no sql, semi sql 형식임
+
+data wraehose는 structured data 중심
+
+data lake는 raw data 중심
+
+data lakehose raw data중심 structured와 unstructued의 조화, 디지털 데이터 approach의 major flow
+
+## multi-modal
+image, video 등 다양한 모델을 다룸
+
+Special computing이 multimodal 중 하나?
+data gravity = 데이터는 너무 많아서 옮기기 어려움 그래서 데이터가 한곳으로 모이는 특성이 존재 이를 스노우볼이라고 표현
+
+5V Volume, variety, velocity, veracity, value 다가지 측면으로 데이터를 바라볼수 있음
+-> 데이터는 포괄적인 용어
 
 
+데이터를 엮어서 사용하는것을 fusion - 데이터를 융합
+sensing 데이터를 흭득하는 기술, 효율적 비용절감, 프라이버시 보장 고려, mult-modal sensing이 필요
 
+
+Sensing에 dominant feature 연결 -> decision point 연결
+
+
+data Engineering - 데이터를 쓸 수 있게 만든것
+1. DS 2. Extract, Load & transform 3. analytic Data Store(ADS) 4. Visualization & Reportion
+
+modeling simulation = 한정적 의미의 data science
+
+### 6주차 2차시
+data storage 방식 이해
+
+| memory | storage |
+| 한시적 | 장기적 |
+| 속도 빠름 | 속도 느림 |
+
+Access 방법
+file storage block storage object storage 
+
+###### Block stoage
++ 데이터를 덩어리 형태로 가져가서 분석
++ 디스크를 블록 단위로 직접 접근
++ OS 입장에서: 그냥 디스크
++ 빠름
++ DB, VM에 사용
+###### file storage 
++ 파일 시스템 형태
++ 디렉토리 구조
++ NAS
++ NFS, SMB
++ 개별적 저장 중심의 storage Entity
+###### object storage
++ 꼬리표를 기반으로 특정요청에 따라 데이터를 가져오는 방식
++ key-value + metadata 기반
++ 위치 개념 없음
++ REST API
++ 확장성 최고
++ S3, Ceph Object, MinIO
+
+하드디스크 장기, 플래시 단기
+storage box 수십개의 storage가 있는 노드 만약 어떤거 고장나면 빼고 그대로 사용하면 됨
+storage redundancy를 위해 스피드업, 안정성 지원(1~2개 stroage가 고장 나도 데이터 보존) 다양한 버전 존재
+
+문제가 있을 때 원래 정보를 보관할 수 있는 형태로 저장됨
+특징 : stroage 기능 특화 많은 양의 stroage drive를 넣을수 있음
+
+
+하드디스크 : 용량 증가 추세 기존 1tb -> 30tb이상 (platter의 개수가 증가 -> 이거에 따라 용량증가)
+SDD(Solid state drive) : 데이터에 바로 접근, 하드디스크는 개별 실린더를 돌아서 데이터를 찾는데 시간 소요
+
+SSD 다양한 형태의 form factor가 있음 : 과거 U.2 U.3 현재 EOSFF 버전 
+저장공간 : 형태가 modal화 됨, 용량도 키우고 저장하기 좋은 형태로 전환
+
+여러 개의 Storage Node가 있음 
+Storage의 대장 node, 담는 node들에게 저장업무 분배 hierachy 관계를 통해 strage 빌드업 
+
+storage와 computing server 연결 
+1. Network-Based Storage (NBS) - storage node간 네트워크 기반 연결, 
+2. Network Attached Storage(NAS) - 파일 서버, NFS/SMB ,그냥 네트워크 파일 공유
+3. Storage Area Network(SAN) - 블록 스토리지 전용 네트워크, Fibre Channel, iSCSI ,서버가 디스크처럼 인식
+
+Computing box : 기본적인 저장 HDD, Flash Base SSD:빠른접속, HDD와 Flash를 Combination해서 Computing server에 활용, 계산을 위한 임시적인 저장 -> 데이터를 쌓아놓고 가져와서 쓸 때는 사용자가 조절해야함
+
+
+Cloud-based Storage Sharing 
+목적에 따라 Compute box, Storage box, networking box 로 구분
+
+
+#### Storage medium 
+
+punch card -> Tape base storae = 이건 여전히 대용량 데이터를 저장하긴 좋아서 아카이빙할때 사용 -> floppy disk = 이건 퇴출됨 -> USB flash memory -> SSD 중간에 side로 있는게 CD,Blu-ray등 존재함
+
+
+단위의 Range 
+SSD 소비자용 1TB,서버용 5~32TB 
+HDD 30TB~64TB
+밀도 flash가 하드디스크를 초월 
+단위 면적 server에 flash를 꽉 채우면 더 큰 용량은 하는것도 가능하긴 함
+
+U(unit) = 서버의 외향적인 크기를 나타내는 단위의 약어 U서버를 특정 크기로 랙에 배치할 수 있도록 서버의 크기를 지정, 랙에는 서버를 고정하기 위한 나사 구멍이 있고 이를 나사로 고정하여 각 서버에 필요한 공간을 쉽게 설치
+랙 = 책장
+U = 책 두께
+
+1U,2U Server 
+E3LS(긴 Rular)타입을 꽂는 경우 1PB 가능
+
+하드디스크 하드 크기의 limit이 있음 발열있고, 무게도 무거움 
+Tape 단점 serial Access 저장하거나 꺼낼때 시간이 많이 걸림 근데 가장 저렴함
+
+Compuete box 의 예시 : Raspberry pi, arduino, smart phone 
+Networking Box의 예시 : Switch, Router, Firewall
+
+#### Converage SmartX boxes
+Hyper-converaged box = compute, storage, network 모든 기능 존재 
+
+여기서 한번 정리 : storage box가 모이면 storage node, 이게 또 모이면 multiple storage node 또 이게 모이면 storage server라 표현 또 이게 모이면 data warehouse라 할수 있음
+
+
+#### OS 
+MBA SSD, Stack으로 연결된 HDD
+NVME는 SSD와 하드디스크 연결 통로의 interface, Non-Volatile Memory가 PCI Express Bus에 연결되는 방식,Storage
+SCSI는 Serial line의 빠른 고속 interface, Computing System
+
+두가지 방식 존재 : paralyze된 하드디스크 또는 flash베이스 고속 interface사용해서 데이터를 꺼냄 -> computing machine에 전달
+
+| 방식     | 성능            | 사용          |
+| ------ | ------------- | ----------- |
+| Block  | Fast (Hot)    | DB, VM      |
+| Object | Medium (Warm) | AI, BigData |
+| File   | Slow (Cold)   | 백업          |
+
+
+parallel : Ai할때 한장의 하드에 데이터 넣어놓는게 아니라 Multiple 하드디스크가 한 데이터를 협심해서 저장하고 읽는것
+
+Parallel file system : IBM의 GPFS, Lustre 등 다양한 프로그램있음 -> 고속데이터 작업 지원 형태로 발전
+특징:
++ 여러 디스크가 동시에 읽기/쓰기
++ GPU 수백 장에 데이터 공급 가능
+
+###### Data Storage challenges
+Parallel file system에서 통로가 충분히 넓어야 한다?(이거 찾아봐야할듯)
+
+
+하나씩 또는 묶어서 쓰는 storage가 NBS,NAS 방식은 soft defined storage 
+
+#### Storage connectivity
+Fibre channel - Storage 연결 network, infiniBand - 고속 Network, Ethernet - 가장 일반적
+다양한 physical connectivty logical connectivity속에서 storage가 연결됨
+
+
+이더넷 베이스를 infiniband를 합친게 *RoCE* 라 하는게 존재 RDMA를 활성화 하는 Converged Ethernet 
+
+운영방법에서는 HCI,SDS가 있는데  
+세가지 capability(compute, storage, network)를 합쳐놓고 scale out해서 사용
+Software definded storage(SDS)는 목표이고, 현실에선 HCI와 혼재함
+
+
+#### 고속 특화 Access
+Flash Base 재료, Parallel한것이 서포트
+Optane이 이전에 뭔가 떳는데 요즘 잠잠하다? (그리고 그냥 넘어가심)
+GPU안에 HBM HM 탑재 
+
+요즘은 All flash base Storage가 대세임
+
+
+#### hadoop 파일 시스템 
+haddop cluster node 에 데이터를 나눠서 node한 후 탐색 -> mapreduce 방식으로 통합 및 효율화 -> 빅데이터 클러스터
+(map reduce는 뭔가 빠르게 하는 방법같은데 세부적으로 모르겠네)
+
+데이터 관리 진화 경로 
+빅데이터 클러스 -> 데이터 웨어하우스 -> 데이터 레이크 -> 데이터 레이크 하우스 
+= 결국 다 storage
+
+multiple node 
+node는 cpu, gpu파워를  가짐, storage cluster를 통해서 데이터를 공급, 스크래치 형식으로 parallel 상태에서 공유
+
+node들의 gpu 메모리를 공유 테이블처럼 사용 , 메모리 테이블의 node값을 업데이트 하며 ai모델을 트레이닝함 
+
+결론 = ai를 위해선 하드웨어가 뒷받침 해야함
+
+추가 + Tiered Storage
+
+Hot / Warm / Cold 자동 이동
+
+예:
+
+RAM → SSD → HDD → Tape
+
+Erasure Coding
+
+RAID의 진화판
+
+Ceph 기본 기술
+
+1~2개 디스크 터져도 복구
+
+Storage Bottleneck
+
+AI 학습 느린 이유 70%가 I/O 병목
+
+#### 7주차 1차시 
