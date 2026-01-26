@@ -1,4 +1,4 @@
-1. 1 2주차 (서론 느낌)
+### 1 2주차 (서론 느낌)
 AI, HPC, HPDA는 데이터를 활용
 박스는 리누긋에 
 박스 펑션 인터 코넥트를 활용해서 시스템을 만듬
@@ -20,7 +20,7 @@ software defined
 데이터 네트워킹 에이아이 
 핵심적인 원리는 최종 서비스를 위한 인프라개선 및 도구화를 통해 단계별로 디지털 트랜스퍼밍 
 
-2. 3주차 1차시
+###  3주차 1차시
 네트워킹 기초
 네트워킹이란 뜻은 연결하다, 이동하다 네트워크는 시설임
 underlay physical networks(공유도로) 
@@ -44,7 +44,7 @@ delay 감소하면 throughput, loss가 증가, loss가 증가하면 throghput �
 프로토콜, latency 개념이 다르게 나오지만 결국 이거 같음
 
 해킹에 대응하기 위해 cyber security도 고려하며 네트워킹을 해야된다
-3. 3주차 2
+###  3주차 2
 네트워크 레이어
 ip tcp는 네트워크 레이어에서 나옴
 virtual cirkit 
@@ -82,7 +82,7 @@ ASs router가 잘못된 정보를 뿌리면 인터넷에 혼란이 발생
 [사진4]
 
 broadcast routing은 전체범위, multicast routing은 제한적 범위에서 하는방법(자막이 좀 이상함)
-4. 3주차 3차시
+### 3주차 3차시
 transport layer
 path를 통한 데이터 전송 및 확인
  internat의 성공이유 IP를 통일했기 때문 (IP만 통일하면 TCP, UDP 등 응용가능) - 모래시계구조
@@ -124,7 +124,7 @@ WEB: 빠른 데이터 처리에 특화된 방식(TCP와의 비교는 안정적 b
 QUIC(quick udp internet connections)는 속도가 빠른데 여긴 빠름(이부분 자막 이상함, 마지막쯤)
 강의이외 내용으로 찾아보니 http3.0부터 적용되고 TCP장점과 UDP 장점을 합치려고 만든구조 UDP인 이유는 껍데기를 UDP를 사용했기 때문 
 
-5. 4주차 1차시 Application 계층의 기본 개념과 역할 이해, 그리고 대표적인 protocol의 원리와 동작 방식
+### 4주차 1차시 Application 계층의 기본 개념과 역할 이해, 그리고 대표적인 protocol의 원리와 동작 방식
 ,CDN(content distribution network)와 p2p 네트워크 동작원리 분석
 
 어플리케이션에선 TCP, socket, 
@@ -152,11 +152,15 @@ DNS도 hierachy를 가지고 있음 DNS도 계층으로 지어져 있음 bind는
 DNS Attack Surface vs DNS Security : 굉장히 중요함
 P2P(Peer to Peer) : Bit torrent가 예시임
 공급자가 메인 서버가 아닌 일반 사용자가 서버가 될수있음 초기 internet speed가 느릴 때 copy를 주고받는 개념 유선 network 및 모바일 상황에서도 활용
-P2P에서 단점은 누가 어떤걸 가지고 있다는걸 모른다는 거임 
+P2P에서 단점은 누가 어떤걸 가지고 있다는걸 모른다는 
+
+
+
+
+거임 
 Distributed hash table 해쉬는 데이터를 요약하여 단순화하는 것 hash function은 데이터를 넣으면 해쉬값을 줌 그건 거의 항상 고유의 값을 가짐 해쉬를 중심으로 데이터 구분 
 DHT 상대편의 주소와 정보 확인 정도로만 설명하시고 넘어감 
-
-6. 4주차 2차시 
+### 4주차 2차시 
 link 계층의 역할과 주요 프로토콜을 이해, error detection 및 correction 메커니즘, LAN(Local Area Network)의 구조와 MAC 주소 VLAN의 원리를 분석
 
 Link 연결하는 것 이 계층은 다음 목적지를 가게하는 방법(물리적인 측면에 가까움)
@@ -190,7 +194,7 @@ Web APP DB가 젤 중요함(3-tier Application server)
 웹서버 -> 어플리케이션 서버 -> 디비서버 패턴이 대부분 인터넷 패턴임
 [사진9]
 
-7. 4주차 3차시
+### 4주차 3차시
 네트워크 보안의 핵심개념을 이해하고, 주요 암호화 및 인즌기법의 원리, firewall,IDS, IPS,Zero Trust Security등 보안 메커니즘 분석
 
 네트워크 보안이란 ? comfidentiality, message integrity, end-point authentication, operational security 이 4가지
@@ -224,7 +228,7 @@ Honey pot : 공격 유인 후 방어
 DMZ(Demilitarized Zone): 1차 방어선 개념
 IP Table : 각 머신에서 방문을 걸어 잠그는 개념(port 막는건가?) ->  이게 성능이 좀 떨어져서 eBPF(Berkeley Packet Filter)로 IP table을 개선
 
-8. 5주차 1차시 
+### 5주차 1차시 
 Software-Defined Networking(SDN)의 기초개념과 도입배경 이해, 기존 인터넷의 한계와 SDN의 필요성, 미래 네트워크 핵심 기술 트랜드
 
 hyper connected software defined 이 두가지가 젤 중요함
@@ -267,7 +271,7 @@ VXLAN(구분 확장 및 Label을 붙여 터널을 만듬)
 Overlay 터널들을 이용해서 Overlay Networking을 완성하여 사용함
 [사진11]
 
-9. 5주차 2차시
+### 5주차 2차시
 SDI(Software-defined infrasturcture)와 SDN의 정의를 이해하고 연관성,SDN을 중심으로 하는 현대 네트워크 구조의 주요요소를 학습, SDN이 네트워크 가상화 및 보안에서 제공하는 이점을 파악한다.
 
 NFV(Network Functions Virtualization) 가상화 NFA 이건모든 영역을 건듬
@@ -328,7 +332,7 @@ Cloud 기반 computing resources와 저장소 연결할때 데이터 검증시 b
 거점도시연결에서 쓰인 fabric은 데이터센터에서도 사용되고 여기선 데이터 연결성이 확보된다는 뜻으로 이해
 *fat-tree*가 페브릭 콘셉안에서 유기적 입체적 성격을 나타냄
 
-10. 5주차 3차시 - HPC와 AI의 융합 및 이를 지원하는 네트워크 구조, Hyper-connected Networking이 HPC-AI환경에서 제공하는 역할, X+AI서비스의 구성과 Hyper-connected Networking
+### 5주차 3차시 - HPC와 AI의 융합 및 이를 지원하는 네트워크 구조, Hyper-connected Networking이 HPC-AI환경에서 제공하는 역할, X+AI서비스의 구성과 Hyper-connected Networking
 
 Digital SOC(Social Overhead Capital) : Computer Systems Everwhere
 효율적 infra build를 위해 
@@ -355,6 +359,8 @@ container에 function을 설치한 후 연결해서 활용 MSA(micro service arc
  # 정리
  미래 네트워크는 Hyper-connected와 Software-defined를 핵심으로 하며, SDN은 네트워크의 제어부와 전송부를 분리하여 중앙 제어와 자동화를 가능하게 한다. NFV는 네트워크 기능을 가상화하여 소프트웨어 기반으로 제공하며, SDI는 네트워크, 서버, 스토리지를 포함한 전체 인프라를 소프트웨어로 정의하는 개념이다. 이러한 기술은 Overlay Networking, VXLAN, Network Slicing과 결합되어 5G/6G 기반 Cloud-native 통신 인프라를 구성한다. Open RAN과 Edge Computing은 기지국과 서비스 처리 구조를 개방·분산화하며, Hyper-connected Networking은 AI, HPC, Cloud를 초고속으로 연결하는 미래 네트워크의 핵심 기반
 
+
+### 6주차 1차 
 
 
 
