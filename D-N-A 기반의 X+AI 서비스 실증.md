@@ -339,11 +339,13 @@ Digital SOC(Social Overhead Capital) : Computer Systems Everwhere
 | 같이쓰는 infra | 같은 rule base 활용 |
 | 규칙적 운영 | |
 | 자동화 | |
+
 -> DevOps  = 개발자와 운영자가 공유함
 문제는 같이 쓰다보니 보안문제를 해결해야함
 -> DevSecOps 
 AI + HPC + HPDA를 합친 인프라를 자동화를 위해선 cloud,cluster 기법을 활용해 규모를 키워야함 
 -> Hyper connected -> 미래형 네트워크가 해결가능함
+
 
 zero copy data transport = 데이터를 전송할때 cp없이 하는것 RDMA(remote direct memory access)라고도 부르고 data transport 효율성 증가함
 
