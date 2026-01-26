@@ -561,24 +561,10 @@ node들의 gpu 메모리를 공유 테이블처럼 사용 , 메모리 테이블�
 
 결론 = ai를 위해선 하드웨어가 뒷받침 해야함
 
-추가 + Tiered Storage
-
-Hot / Warm / Cold 자동 이동
-
-예:
-
-RAM → SSD → HDD → Tape
-
-Erasure Coding
-
-RAID의 진화판
-
-Ceph 기본 기술
-
-1~2개 디스크 터져도 복구
-
-Storage Bottleneck
-
-AI 학습 느린 이유 70%가 I/O 병목
++ Tiered Storage : Hot / Warm / Cold 자동 이동
+예 : RAM → SSD → HDD → Tape
++ Erasure Coding : RAID의 진화판
+Ceph 기본 기술, 1~2개 디스크 터져도 복구
++ Storage Bottleneck : AI 학습 느린 이유 70%가 I/O 병목
 
 #### 7주차 1차시 
