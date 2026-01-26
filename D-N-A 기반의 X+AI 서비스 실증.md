@@ -1,4 +1,4 @@
-1 2주차 (서론 느낌)
+1. 1 2주차 (서론 느낌)
 AI, HPC, HPDA는 데이터를 활용
 박스는 리누긋에 
 박스 펑션 인터 코넥트를 활용해서 시스템을 만듬
@@ -20,7 +20,7 @@ software defined
 데이터 네트워킹 에이아이 
 핵심적인 원리는 최종 서비스를 위한 인프라개선 및 도구화를 통해 단계별로 디지털 트랜스퍼밍 
 
-3주차 1차시
+2. 3주차 1차시
 네트워킹 기초
 네트워킹이란 뜻은 연결하다, 이동하다 네트워크는 시설임
 underlay physical networks(공유도로) 
@@ -44,7 +44,7 @@ delay 감소하면 throughput, loss가 증가, loss가 증가하면 throghput �
 프로토콜, latency 개념이 다르게 나오지만 결국 이거 같음
 
 해킹에 대응하기 위해 cyber security도 고려하며 네트워킹을 해야된다
-3주차 2
+3. 3주차 2
 네트워크 레이어
 ip tcp는 네트워크 레이어에서 나옴
 virtual cirkit 
@@ -82,7 +82,7 @@ ASs router가 잘못된 정보를 뿌리면 인터넷에 혼란이 발생
 [사진4]
 
 broadcast routing은 전체범위, multicast routing은 제한적 범위에서 하는방법(자막이 좀 이상함)
-3주차 3차시
+4. 3주차 3차시
 transport layer
 path를 통한 데이터 전송 및 확인
  internat의 성공이유 IP를 통일했기 때문 (IP만 통일하면 TCP, UDP 등 응용가능) - 모래시계구조
@@ -124,7 +124,7 @@ WEB: 빠른 데이터 처리에 특화된 방식(TCP와의 비교는 안정적 b
 QUIC(quick udp internet connections)는 속도가 빠른데 여긴 빠름(이부분 자막 이상함, 마지막쯤)
 강의이외 내용으로 찾아보니 http3.0부터 적용되고 TCP장점과 UDP 장점을 합치려고 만든구조 UDP인 이유는 껍데기를 UDP를 사용했기 때문 
 
-4주차 1차시 Application 계층의 기본 개념과 역할 이해, 그리고 대표적인 protocol의 원리와 동작 방식
+5. 4주차 1차시 Application 계층의 기본 개념과 역할 이해, 그리고 대표적인 protocol의 원리와 동작 방식
 ,CDN(content distribution network)와 p2p 네트워크 동작원리 분석
 
 어플리케이션에선 TCP, socket, 
@@ -156,7 +156,7 @@ P2P에서 단점은 누가 어떤걸 가지고 있다는걸 모른다는 거임
 Distributed hash table 해쉬는 데이터를 요약하여 단순화하는 것 hash function은 데이터를 넣으면 해쉬값을 줌 그건 거의 항상 고유의 값을 가짐 해쉬를 중심으로 데이터 구분 
 DHT 상대편의 주소와 정보 확인 정도로만 설명하시고 넘어감 
 
-4주차 2차시 
+6. 4주차 2차시 
 link 계층의 역할과 주요 프로토콜을 이해, error detection 및 correction 메커니즘, LAN(Local Area Network)의 구조와 MAC 주소 VLAN의 원리를 분석
 
 Link 연결하는 것 이 계층은 다음 목적지를 가게하는 방법(물리적인 측면에 가까움)
@@ -190,7 +190,7 @@ Web APP DB가 젤 중요함(3-tier Application server)
 웹서버 -> 어플리케이션 서버 -> 디비서버 패턴이 대부분 인터넷 패턴임
 [사진9]
 
-4주차 3차시
+7. 4주차 3차시
 네트워크 보안의 핵심개념을 이해하고, 주요 암호화 및 인즌기법의 원리, firewall,IDS, IPS,Zero Trust Security등 보안 메커니즘 분석
 
 네트워크 보안이란 ? comfidentiality, message integrity, end-point authentication, operational security 이 4가지
@@ -224,7 +224,7 @@ Honey pot : 공격 유인 후 방어
 DMZ(Demilitarized Zone): 1차 방어선 개념
 IP Table : 각 머신에서 방문을 걸어 잠그는 개념(port 막는건가?) ->  이게 성능이 좀 떨어져서 eBPF(Berkeley Packet Filter)로 IP table을 개선
 
-5주차 1차시 
+8. 5주차 1차시 
 Software-Defined Networking(SDN)의 기초개념과 도입배경 이해, 기존 인터넷의 한계와 SDN의 필요성, 미래 네트워크 핵심 기술 트랜드
 
 hyper connected software defined 이 두가지가 젤 중요함
@@ -246,8 +246,18 @@ control평명과 data 평면이 연결되면서 조화롭게 일할 수 있는 �
 software-Defiend 개념이 적용가능한 신형 또는 기존 장비 보완작업
 
 Control flow조정과정 Tag(패킷에 라벨 붙이기) -> Steer(경로 유도) -> map(서비스 매핑)
-P4는 네트워크 장비를 프로그래밍하는 언어
-Software-Defined Networking(SDN) 
+대표적인게 onus, opendaylightt,apic 이렇게 있음
+
+
+P4는 네트워크 장비를 프로그래밍하는 언어 - openflow는 아직은 좀 남아있었다면 P4는 아예 언어적임
+
+Overall Infra Sector를 End,Edge,core에 연결한 상태에서 서비스 제공 = 이 말이 전체에 SDN을 적용한거라 함
+이걸 SDI(Software-Defined Infra)라 말함
+Digitla SOC에 SDI가 적용 되어야함
+디지털 SOC(Social Overhead Capital)는
+도로, 철도, 하천 등 기존 사회기반시설에 AI, IoT, 5G 등 디지털 기술을 접목하여 안전하고 효율적으로 관리하는 지능형 인프라
+
+-- 여기까지가 SDN,SDI 내용이고, 이건 어찌보면 변화임, 이후 근데 기존 방식에 조금 발전시킨방식 설명
 [이쯤에서 한번 정리]기존 네트워크 문제 장비가 스스로 판단 (복잡), 중앙 제어 불가능, 자동화 불가
  SDN 해결 : Control/Data 분리, 중앙 Controller, Flow 기반 제어, OpenFlow, P4로 네트워크 프로그래밍
 미래 :Hyper-connected, SDN + NFV + AI ,콘텐츠 중심 네트워크(NDN)
@@ -257,11 +267,91 @@ VXLAN(구분 확장 및 Label을 붙여 터널을 만듬)
 Overlay 터널들을 이용해서 Overlay Networking을 완성하여 사용함
 [사진11]
 
-5주차 2차시
+9. 5주차 2차시
 SDI(Software-defined infrasturcture)와 SDN의 정의를 이해하고 연관성,SDN을 중심으로 하는 현대 네트워크 구조의 주요요소를 학습, SDN이 네트워크 가상화 및 보안에서 제공하는 이점을 파악한다.
 
 NFV(Network Functions Virtualization) 가상화 NFA 이건모든 영역을 건듬
 [사진12]
 
-SDN에서 가장 핵심은 네트워크 장비의 Control Plane(제어부)와 Data Plane(전송부)의 분리
+SDN에서 가장 핵심은 네트워크 장비의 Control Plane(제어부)와 Data Plane(전송부)의 분리(SDN(Software Defiend Networking) : 네트어크 장비의 controlPlanem(두뇌)를 중앙 소프트웨어로 빼버림
+전통 네트워크는 스위치가 제어 전달 다 했는데, SDN에선 컨트롤러가 제어하고, 스위치가 패킷전달만 함
+
+Cloud-native Application Friendly한 Networking 형성 -> SDN과 NFV 기술이 합쳐져 Overall Infra Sector에 담김
+
+SDI = 모든 인프라를 소프트웨어로 정의하는 세계관
+SDN=네트워크 담당, NFV= 네트워크 기능을 VM/컨테이너로 만든느 기술 이 둘이 합쳐져서 Cloud-native 통신 인프라가 됨
+
+Slice = 전용차선, Slicing Arrays 기술 구현 = Slices의 요구조건 만족, 차별화 및 효율적 지원 방법 생성 
+Slicing 6G 진행형, 5G NSA(Non-Standable),SA(Standablone)[독립적으로 실행될수 있는 소프트웨어]
+Network Slicing - 하나의 물리 네트워크를 여러 개의 논리적 네트워크로 쪼갬
+
+Slicing 적용 영역 : Open RAN, OpenRadio Access Network, Private Network
+| 구분  | 의미                    |
+| --- | --------------------- |
+| NSA | 4G 코어에 5G 무선만 붙인 임시버전 |
+| SA  | 코어까지 전부 5G (진짜 5G)    |
+
+
+RAN (Radio Access Network)
+
+기지국 쪽 네트워크 (휴대폰 ↔ 기지국)
+예전:
+삼성/화웨이 장비 = 폐쇄형 블랙박스
+
+
+Open RAN:
+기지국도 SDN/NFV처럼 모듈화 + API 공개
+
+구성:
+RU: Radio Unit
+DU: Distributed Unit
+CU: Central Unit
+
+→ 각각 다 컨테이너/VM으로 분리 가능
+
+
+ 엣지 컴퓨팅(Edge Computing)은
+데이터가 생성되는 지점(엣지)과 가까운 곳에서 데이터를 즉시 처리하는 분산 컴퓨팅 방식으로, 데이터를 중앙 클라우드로 모두 보내지 않고 로컬에서 분석해 응답 속도를 높이고 네트워크 부담을 줄이는 기술
+원리 : smart 장비들의 유기적 연결 -> Service 제공 뒷단: Cloud base 트레이닝 모델생성 앞단 : 추론을 통한 적용 및 검토
+스마트 팩토리도 같은 원리임 
+
+open source level에서 edge computing 과 radio access network 기술을 연결
+
+*fabric* 끝단에서 core 쪽으로 갈수록 촘촘하게 연결되는것처럼 보이는데 이걸 fabric이라 표현함
+외부말고도 내부에서도 fabric이란 용어를 쓰는데 ai장비들을 빠르게 연결하는 interconnect
+
+좀 다른 얘기긴 한데 : 
+Cloud 기반 computing resources와 저장소 연결할때 데이터 검증시 blockchain으로 서비스에 대한 신뢰 부여
+이걸 ABCD라 하는데 AI,Block chain,Cloud,Data를 연결한다 함
+
+
+거점도시연결에서 쓰인 fabric은 데이터센터에서도 사용되고 여기선 데이터 연결성이 확보된다는 뜻으로 이해
+*fat-tree*가 페브릭 콘셉안에서 유기적 입체적 성격을 나타냄
+
+10. 5주차 3차시 - HPC와 AI의 융합 및 이를 지원하는 네트워크 구조, Hyper-connected Networking이 HPC-AI환경에서 제공하는 역할, X+AI서비스의 구성과 Hyper-connected Networking
+
+Digital SOC(Social Overhead Capital) : Computer Systems Everwhere
+효율적 infra build를 위해 
+공유형으로 구현, 플랫폼 운영 방법 차별화 불필요
+
+# | 공유infra| 공통 platform|
+| 같이쓰는 infra | 같은 rule base 활용|
+| 규칙적 운영 | |
+| 자동화 | |
+-> DevOps  = 개발자와 운영자가 공유함
+문제는 같이 쓰다보니 보안문제를 해결해야함
+-> DevSecOps 
+AI + HPC + HPDA를 합친 인프라를 자동화를 위해선 cloud,cluster 기법을 활용해 규모를 키워야함 
+-> Hyper connected -> 미래형 네트워크가 해결가능함
+
+zero copy data transport = 데이터를 전송할때 cp없이 하는것 RDMA(remote direct memory access)라고도 부르고 data transport 효율성 증가함
+
+container에 function을 설치한 후 연결해서 활용 MSA(micro service architecture)기반, service chining or service composition
+이것의 핵심수단이 hyper connetecdd
+
+ # 정리
+ 미래 네트워크는 Hyper-connected와 Software-defined를 핵심으로 하며, SDN은 네트워크의 제어부와 전송부를 분리하여 중앙 제어와 자동화를 가능하게 한다. NFV는 네트워크 기능을 가상화하여 소프트웨어 기반으로 제공하며, SDI는 네트워크, 서버, 스토리지를 포함한 전체 인프라를 소프트웨어로 정의하는 개념이다. 이러한 기술은 Overlay Networking, VXLAN, Network Slicing과 결합되어 5G/6G 기반 Cloud-native 통신 인프라를 구성한다. Open RAN과 Edge Computing은 기지국과 서비스 처리 구조를 개방·분산화하며, Hyper-connected Networking은 AI, HPC, Cloud를 초고속으로 연결하는 미래 네트워크의 핵심 기반
+
+
+
 
