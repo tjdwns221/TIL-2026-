@@ -334,8 +334,9 @@ Digital SOC(Social Overhead Capital) : Computer Systems Everwhere
 효율적 infra build를 위해 
 공유형으로 구현, 플랫폼 운영 방법 차별화 불필요
 
-# | 공유infra| 공통 platform|
-| 같이쓰는 infra | 같은 rule base 활용|
+| 공유infra | 공통 platform |
+| ------ | ------------| 
+| 같이쓰는 infra | 같은 rule base 활용 |
 | 규칙적 운영 | |
 | 자동화 | |
 -> DevOps  = 개발자와 운영자가 공유함
