@@ -1,4 +1,4 @@
-1. 기본 개요
+# 1. 기본 개요
   1. 인프라 구축 및 쿠버네티스 이해 - 환경(Dell 미니형 PC X 2, GPU없는 데스크탑 X 3) linux 24.04 
      - Control plane(데스크탑 1)
      - Worker node(데스크탑2,3, 미니피시 1)
@@ -78,5 +78,37 @@
   5.2 CNI 설치(container network interface) 이거 없으면 노드끼리 통신 안됨
     너무 많은 cni가 있어서 상황마다 다르게 선택
     - 1.22
-    
+# 2 rook-ceph
+1. rook-ceph?
+   현상황 : 쿠버네티스 클러스터 위에 분산 스토리지 OS를 쿠버네티스 네이티브 방식으로 올려놓은 상태
+   룩캡은 쿠버네티스에서 관리해주는 Operator 정도로 이해하면 될듯 -> 좀 더 쉽게 말하면 쿠버네티스로 클러스터를 만들었고 이제 그걸 활용해야하는데 각 노드에 있는 스토리지를 어떻게 사용해야 하는가? 지금 상황은 스토리지가 노드별로 분산되어있음 이걸 사용자가 쉽게 활용하려면? 묶어놓는게 편함
+   기존 [pysical disk] -> kubernetes CSI -> Pod 형태라면
+   지금은 [physical disk] -> ceph(*storage OS*) -> Rook(ceph *operator*) -> kubenets CSI -> PVC/PV -> Pod
+   여기서 PVC(Persistent volum claim)는 '나 디스크 필요한데 할당해줘' 란 개념임
+
+2. crds.yaml (kubectl create -f crds.yaml) : 쿠버네티스가 알아 먹을 수 있게 새로운 명령어를 가르치는거[새로운 Resource Type을 추가] (파일 뜯어보면 엄청 길게 뭐가 많음 - 세부적 분석은 나중에~)
+   쨋든 이거 없으면 쿠버네티스가 cephcluster, cephblockpool, cephfilesystem 같은 명령어를 못씀 (이 명령어도 나중에)
+3. common.yaml (kubectl create -f common.yaml) : rook-ceph가 활동한 환경세팅
+   포함 하는 내용으로는 Namespace: rook-ceph, ServiceAccount, Roles / RoleBinding, ConfigMap 등이 있는데 이것도 아래에 (간단히 말하면 인프라 구축임)
+4. csi-operator.yaml (kubectl create -f csi-operator.yaml) : ceph를 PVC로 연결하는 스토리지 관리자(1번에 구조에 한번 적긴함)
+   이게 관리하는게 RBD CSI Driver, cephFS CSI DRiver, *PVC ◀️-▶️ cept 연결*
+5. operator.yaml (kubectl create -f operator.yaml) : 말그대로 operator 딱봐도 개 중요해보임 (뭘 많이하는데 이건 공식문서 참고)
+
+6. cluster.yaml (kubectl create -f cluster .yaml) : ceph 클러스터를 선언적 생성 -> 이게 쿠버네티스 클러스터 전체 디스크 써서 ceph 클러스터 만드는것
+   세부적으로 Rook Operator가 이걸 읽고:
+   6.1 모든 노드 접속 -> 디스크 스캔 -> 빈 디스크 찾음 -> OSD 생성 -> MON 생성 -> MGR 생성 -> Ceph cluster 구성 -> replication / placement 설정
+   를 다 해줌 (이것도 뜯어보면 엄청 김)
+정리 :
+crds.yaml        → 쿠버네티스에게 Ceph라는 개념 주입
+common.yaml      → Rook 활동 공간 생성
+csi-operator     → Ceph ↔ PVC 연결 관리자
+operator.yaml    → Ceph 자동 운영 엔진
+cluster.yaml     → 실제 분산 스토리지 생성 명령 (GPT 요약)
+
+<img width="735" height="234" alt="image" src="https://github.com/user-attachments/assets/28ab0481-f829-44b3-aac3-42705ddd8bc5" />
+읽기 귀찮으면 이거 따라하면 됨 (놀랍게도 공식문서에서 실제로 줌(Too Long; Did't Read))
+
+7. 
+
+
   
