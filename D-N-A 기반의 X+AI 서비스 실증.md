@@ -568,3 +568,123 @@ Ceph 기본 기술, 1~2개 디스크 터져도 복구
 + Storage Bottleneck : AI 학습 느린 이유 70%가 I/O 병목
 
 #### 7주차 1차시 
+conntectd DataLake의 3계층 구조, Data 저장과 활용방식에서 ETL과 ELT의 차이, Data의 정리 및 활용을 위한 ETL과 ELT 방법론의 특징, DataLake와 Data Warehose의 차이
+
+Connected DataLake 연결해서 활용 가능 organized, labeling 하여 쌓아넣음(metadata-데이터의 성질을 나타내는 데이터)
+
+##### Data 3 Layer 
+collectd Raw data(hot, warm, cold) : 안전하게 저장 및 필요한 사람에게 공급 - 엣지 클라우드
+Data pipelines Open & Connected DataLake : 데이터를 연결해서 활용할 수 있는 환경 조성, 서로 다른 데이터를 섞을 수 있는 상태로 만들어서 활용, 개방형 Pipeline - 코어 클라우드, ODPI(open metadata exchange)
+Data Meshes : 데이터를 활용 데이터와 AI모델 또는 분석 기법을 합하여 활용 fusion data + AI -> 융합 또는 새로운 가치의 데이터 창출 - data market
+
+과거 : 컴퓨터 중심(데이터 공급), 현재 : 데이터 중심 
+
+data centric connected datalake가 이 강좌의 최종목표인 X+AI의 서비스의 실증
+
+#### data Extract 하는 법 
+ETL : Extract -> Transform -> Load (트랜스폼 한 후 분석)
+(추가) - transform은 변환, 스키마 정하기 정도고, 쓰는곳은 금융 DB, 전통 DW 등에서 사용 장점은 정합성좋고, 관리쉬움, 단점은 유연성 없고, AI, 로그, 이미지 못다룸 
+
+
+
+ELT : Extract & Load -> Transform(원본을 다양한 각도에서 연결 - 복합적 융합적)
+(추가) 여기선 원본 그대로 저장하고 나중에 목적 따라 변환 쓰는곳은 AI, 빅데이터, 데이터 레이크 
+
+(추가) 정리하면 ETL은 DB중심, ELT는 AI/분석 중심 사고과정임
+
+
+ELT를 통해 파이프라인을 형성 -> 분석 가능한 형태로 만듦 이런 capability를 담는 것을 lakehouse로 연결 후 분석
+
+데이터에서 정보를 뽑아서 얻는걸 data intelligance 데이터를 다루는걸 governance
+Catalog inventory = meta data 레벨로 공유:open data 된 공유기반 조성
+
+Data platform : 데이터를 잘 다룰 수 있는 플랫폼(개방형)
+Dataverse project  
+
+data warehose : rawdata -> structed data -> warehouse : 전처리개념 - database - structured data를 transaction base로 ACID만 하면서 타이트하게 관리
+datalake : rawdata -> 적당히 정리해서 모아둠 -> lake : 후처리 개념 - nosql - Key,Value column, Ggraph
+00년대까지 웨어하우스 10년까지 레이크 현재는 융합된 lake house가 발전추세 
+
+datalake를 잘못하면 swamp(데이터 늪)이 된다 체계적으로 관리해야 한다 
+-> 정형,반정형 비정형끼리 분류하고, 나중에 캐싱하고 메타데이터, 인덱싱 해서 정리(제대로 이해한게 맞나 모르겠네)
+
+이 3계층에서 고려해야 할 요소 : 
+데이터를 안전하게 남들이 못보게, 없어지지 않게, 빠르게 적재적소에 배치, 데이터를 연결 개방 공유, 도메인의 데이터를 융복합 하여 capability 확산, 비용문제 
+challenges : 어떻게 통합해야하냐? 어떻게 보안을 만들것인가? mesh-analytis, 분산 dataponds르 어캐 연결?, 데이터를 어떻게 연결할 것인가?, 어떻게 저장해야 효율적인가?
+
+Data 저장방식 :
+1. open table 방식 : Data저장 format이 다름 -> 다 format을 바꿔서 활용해야 함
+2. organize 방식 : Iceberg, Delta (이 방식에 대한 설명 부재)
+   저장 방식 통일하면 메타데이터 레벨에서도 통일성 생기고 전체적으로 구조화 하기 쉬워서 ai에 활용하기 쉬움
+
+Open Format :Ice berg, Delta,Hudi 호환성 확보
+이곳에 저장하고, 가져오는 방식은 S3(rest api)
+카탈로그는 tabular, polaris catalog, unity catalog 등 있고,
+또 이걸 쿼리 엔진에 요청하는 법은 rest api형식으로 같음 스파크 파이썬 등임
+
+정리하면 object, catalog, query engine 이세개가 rest api로 통신하며 정보교환함
+
+
+오픈데이터 플랫폼을 만드는법 :
+  핵심 속성을 병목(bottle neck)을 만들고 합의를 통해서 다양한 도구 지원 - 여기서 쓰인 병목은 나쁜의미는 아님 일반적으로 컴퓨터 내부 통신이나 외부통신에서 병목현상은 통신이슈로 성능저하를 일으키지만 여기서 쓰인 병목은 통일을 다른말로 한것임
+
+  open table, 메타데이터(open catalog)등 움직임은
+  catalog는 unity catalog, polaris catalog 경쟁적으로 만들고 있음 - open catalog 방식(방향석 제시, 개방유도 및 성장)
+
+  데이터 저장 및 메타데이터 공유의 호환성 확보 -> 소프트웨어 차원의 통일성이 가장 좋음(만약 된다면 표준화된 connectd data approach가 생성될것임 그리고 현추세도 그러긴함)
+
+
+  #### security major 
+  military approach(이건 교수님 특징같은데 전체 시스템 설계 자체가 무너지면 안된다 -> 전시에서도 시스템은 무너지면 안된다 라는 걸 함축하는 말 같음) -> entity의 끝단에 붙어서 함 근본적으로 끝단 뿐만 아니라 전송 단계에도 추가해야 함( 보안을 위해선 어디서 왔고, 어디로 갔는지 정도만 아는건 부족) 
+  데이터 전송과정의 보안 통제, end-to-end 보안체계 구축, 전송인과 수신인 간 독립적이고 시너지를 발휘하는 구조마련 = secure한 데이터 이동가능 
+  암호화 기법 - network isolation (virtualizer network, tunneling)
+  Secured Networking with open data exchange
+
+  각 지역이 잘하는 분야에 집중해 데이터 수집 -> 전략적 거점으로 활용해 연결함으로써 한 세력으로 통합
+  -
+
+
+  conntected Datalake = Strorage space를 효율적으로 공유하면서 특화하는 전략적 선택(catch fraser open storage network)
+  - storage cluster 표준화 -> 소프트웨어 연결해 데이터 연결 및 공유 시도
+
+  DTN(Data Transfer Node) 기법
+  - RDM(Remote direct memory)
+  - zero copy
+(추가) DTN: 대규모 데이터 전송 전용서버 - 구조 Storage cluster -> DTN -> WAN / research network -> 다른 DTN -> 다른 storage
+why use it ? 일반서버는 디스크 cpu gpu service 가 섞여있음 = 전송 병목 발생 반면에 DTN은 오직 네트워크 + RDMA + zero-copy 최적화만 함 
+핵심 기술은 RDMA(CPU 거치지 않고, memory to memory 전송), zero-copy(copy() 없이 버퍼 직통), infiniBand/RoCE(초저지연 네트워크), BPF/XDP(커널 스택 우회, NIC에서 바로 패킷 처리) 
+---
+
+
+  소프트웨어와 하드웨어가 combination 형태로 동작
+  예시) 24시간 택배 체제 - 문제점 operation overhead가 큰 문제임( over head : 오버 헤드는 특정 기능을 수행하는데 드는 간접적인 시간, 메모리 등 자원 ) 전반적 공유 및 활성화 단계에서는 체제 구축이 요구됨
+
+  connected data transport 문제를 해결해야함 근데 문제는 data share와 copy 형태의 저장, 제한된 컴퓨팅 파워 공유
+
+  user 측면 : 하드웨어의 소프트웨어적 접근 필요, API call을 해야 함
+
+
+  machine 측면 : P4, barkeley packet filter(BPF), Express data path(XDP) 등을 활용 -> OS의 overhead없이 바로 데이터 처리, 하드웨어 기능과 결합하여 데이터 전송
+
+
+  결론 : 원격 스토리지 네트워크 증가 및 연결 기능 체계화, 효율적 데이터 관리 플랫폼 구축 
+
+
+  #### Data Meshes
+  Data Source가 흩어져 있음, 각 도메인은 특정 데이터에 집중함, 다양하게 분산된 데이터를 연결하여 분석 작업을 수행함
+
+
+  | Mesh | fabric |
+  | Domain Data를 중심으로 거미줄 같은 연결을 만듦 | 기계적, 데이터에 대해 타이트한 연결성 확보 |
+  | 효율적이고 가치 있는 분석을 하거나 ai로 연결함 | 데이터 간의 관계 분석 | 
+  | 도메인 데이터의 가치를 거미줄 처럼 엮는데 효과적 | 인프라 빌드 접근에 적합 |
+  | 조직/도메인 중심 | 인프라/시스템 중심 |
+  | 비즈니스 구조 | 기술 구조
+  
+  System build approach에서는 Data fabric이 natural하게 적용됨 (더 자연스럽게?)
+
+#### 7주차 2차시 
+
+  
+  
+   
