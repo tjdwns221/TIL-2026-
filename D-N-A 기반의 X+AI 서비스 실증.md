@@ -685,7 +685,13 @@ why use it ? 일반서버는 디스크 cpu gpu service 가 섞여있음 = 전송
   System build approach에서는 Data fabric이 natural하게 적용됨 (더 자연스럽게?)
 
 #### 7주차 2차시 
+open Exchange 기반 data 공유의 중요성, Unified metadata와 open format table의 역할, cloud환경에서 datalake 활용의 효율성
 
-  
+X : domian을 이렇게 표현하심
+문제추론 및 해결 중요 데이터 수집 및 분석 
+
+ 전체적으로 봤을때 이번 차시에는 거의 어떻게 활용되고 있냐는 거 중심이라 편하게 보고 넘김
+
+ 
   
    
