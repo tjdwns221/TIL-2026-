@@ -692,6 +692,92 @@ X : domian을 이렇게 표현하심
 
  전체적으로 봤을때 이번 차시에는 거의 어떻게 활용되고 있냐는 거 중심이라 편하게 보고 넘김
 
- 
-  
-   
+#### 8주차 1차시 
+Multimedia Video Streaming
+Video Streaming, Audio Streaming - 대량 이동 시 시간적 제약을 가짐, Continuous Media
+Multimedia type - Autio, Video, Animation = 변화되는 것, Graphics, Text = 변화되지 않는 것
+
+Scalable Video Coding(SVC) : 다양한 Dimension을 Control 함
+HD Quality : SD Quality를 Resolution up 한 후 그 차이만 Add On 함
+종류 : 공간적, 시간전, SNR(quality)
+Fine-grain Scalability : Quality 레벨 층을 아주 잘게 Layering해서 Add On 하는 방식 
+
+Scale up Video Coding : 베이스에서 다양한 Scale up video를 활용하면 다양한 양이 조정됨
+
+
+네트워킹 방법? QOS Triangle
+| Streaming | Conversation 또는 interactive Conferencing |
+| -------- | ----------- |
+| 데이터 전송 과정에서의 Gap 활용 | |
+| Down시 버퍼링 -> 시간 조절 -> 플레이 연결 | |
+| Netflix, Youtube | 전화, Zoom base conferencing |
+| | 어느 정도 loss 허용 |
+| | 최소 100ms |
+
+데이터를 보낼 때 loss가 있으면 안됨 (기본 원칙) 
+상황마다 requirement space가 다름
+
+RTP(Data에 Timecode를 기록하고 전송하는 관리하는 기법)
+RTCP(Companial Protocol)
+
+Interaction Signal, Voice Session 
+실시간 Support line에 대한 Protocol Set - ITF Standard로 통일성을 가지고 운영
+
+
+Voice over IP  
+Redundancy Piggybacking :
+Loss 대응력 향상, Data가 덜 전송된 경우(플레이 포인트를 80~120 ms로 시간을 조정함)
+Voice Quality를 확보할 수 있는 시간을 최대한 끌면서 듣게함 
+
+
+Conversation P2P connection Base로 연결해야 함 중계를 통한 연결은 불필요
+
+ip networks 
+mulicast(선택된 다수), broadcast, unicasting
+
+media Delivery - application vs network
+
+#### 8주차 2차시
+network의 보장성 체계는 여전히 극복상황임
+CDN(content distribution network) 
+CDN이 발전하면 band width가 커짐, 멀티미디어 스트리밍 챌린지 해결
+
+CDN : 모든 오리지널 소스를 주 공급 서버로부터 가져오는게 아님 - DNS redirection, ip anycast, (Netplix CDN Leveraging Amazon AWS)
+CDN 체계는 메인 서버, 분산된 서버 -> CDN 네트워크를 직접 관리 -> 최종유저와 관계설립
+
+CDN발전 과정 : 똑같은 Quality의 데이터 공급 but 유서간의 네트워크 상황이 다른경우 네트워크에 적응화 돼서 전송 (똑같은 퀄의 데이터 보냄, 어뎁션해서 보냄) 
+개별 유저에 대한 어뎁션 강화 -> 보편적인 유저에게 어려움 발생(trade off)
+
+
+CDN을 통해 multimedia networking 이슈를 해결하여 상업적으로 안정됨 
+QoS가 가능한 네트워크 엔티티 조성 -> priority queuing, weighted fair queuing 활용 -> 특정 유저에게 priority를 줘서 특정 트래픽이 많이 가게함 (하지만 실제 세계에선 근본적으론 이렇게 하진않고, 공정성 망 중립성 원리와 연결되서 특정 유저에게 더 낫게 주진 않음, 차별하지 않는다. )
+
+
+내재적인 차별화는 있지만 요금제 차별화는 허용되지 않음( 비용 차별화를 이용하면 네트워크 전송문제가 더 쉬워짐 ) 
+
+
+
+immersive media
+현재는 대부분 멀티미디어 데이터 이동, 다양하고 복합적인 미디어를 다룰 수 있는 시스템 완성 됬고, 개개인이 모두 방송가능함
+넓은 스팩트럼의 서비스 
+
+광기반 네트워크 활용해서 데이터 전송을 위한 고속도로를 열어 문제를 해결하고자 함, 차별화된 로직으로 접근
+대역폭 증가가 문제들의 많은 부분을 해소, 어플리케이션의 고려사항 
+
+
+멀티미디어 네트워킹 
+resource-aware 클라우드 베이스 리소스풀 서비스 펀셩 채이닝 -> 클라우드 네이티브 환경에서 서비스 컴포시션 원리 적용 -> SOA -> MSA 
+
+
+Microservices와 Cloud native 환경, 컨테이너화 오케스트레이션, CIC 자동화 -> 어플리케이션의 관리 유지 및 보급 
+
+
+Data Centric computing CPU-Centric, Data
+
+일반적 패턴은 : user가 리소스 선택,활용 -> 리소스 matchmaking -> 서비스 chaining -> composition process
+
+
+cloud logic, edge core를 통일성 있게 체계화 -> 디지털 SOC DNA기반의 x+ai 서비스가 실증될 수 있는 인프라로 발전
+
+
+#### 9주차 1차시
