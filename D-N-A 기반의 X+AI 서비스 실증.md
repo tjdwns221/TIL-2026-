@@ -781,3 +781,130 @@ cloud logic, edge core를 통일성 있게 체계화 -> 디지털 SOC DNA기반�
 
 
 #### 9주차 1차시
+AI!(드디어 아는거 나왔다)
+
+DNA기반 서비스 실증에서 마지막인 AI(Data - Network - AI)
+
+70년대 Expert system 이 처음 나왔지만, 기술적 한계로 발전하지못함
+90년대 neural net이 나왔지만, 여전히 컴퓨팅 파워가 부족함
+10년대 deep learning이 나왔고, 드디어 기술발전이 되어서 실체화됨
+
+
+Alex net이 12년쯤 나왔고, Alpha go -> chatgpt 큰 흐름
+
+
+요즘 Strong Ai라 부르고 이전엔 Weak Ai라 부름 여기서 weak는 사람의 사고를 쫒아가지못함, strong은 사람과 비슷한 수준이라 표현
+
+1. AGI(Artificial general intelligence) 모든 분야를 커버할 수 있는 능력(Strong ai)
+
+다음 단계는 Super AI라 하는데 이건 흔히 말하는 초지능임(모든 분야에서 사람의 사고 수준을 초월) - 알파고, 세부적인 분야에서 출헌 but 전체적인 분야에선 아직 부족
+
+2. Multimodality 그림 자연어 등 복합적으로 생각
+3. Explainable AI AI가 한 일에 대해 원리나 근거를 가지고 설명할 수 있는것 
+4. Trustworthy AI AI가 하는 일 자체에 대한 믿음, 데이터 기반으로 잘못된 정보는 알아서 거름
+
+#### AI Trend 
+1. Data-centric AI
+2. Hyper-scale AI
+   Foundation, Chatgpt Line
+3. Responsible AI
+   AI Safety -> 사람의 안전을 보장할 수 있는 AI
+
+궁극적으론 사람을 위한 AI지향 ◀️▶️ 전쟁을 위한 활용
+
+AI Map 
+
+AI-> ML -> Deep Learning(발전 흐름)
+머신러닝 종류 
+supervised learning, unsupervised learning, reinforcement learning - Deep Learning(이건 세부적으로 파는 부분)
+
+학습모델은 CNN,RNN,DNN,GAN등 다양하게 존재
+
+N Network(다양하게 존재)- 교수님은 Model Zoo라는 표현을 좋아함 생물체처럼 다양한 작업을 할 수 있다고 점에서
+
+
+Expert system 간단히 설명하셨는데 그냥 교양느낌으로 들음
+
+
+Supervised learning - natural 한 method, 데이터 맞고 틀림을 라벨링, Ground Truth Label - 근거가 되는 데이터에 라벨을 붙임
+장점 : 확실한 데이터와 라벨링된 데이터 - 높은 정확도, 단점 : 사람에 따른 데이터 라벨링 편향성, 데이터 이외의 정보는 모름
+
+
+Unsupervised Learning - Clustering Method가 도메인 에서 수학적인 베이스로 발전, 데이터를 유형화해서 관찰 Space를 찾는 과정에서 Clustering이 됨 
+기본적으로 영역, 특성 구분 -> hybride skim
+
+-> 사람이 구분한 것을 학습해서 정리, 기계가 패턴분석 후 패턴을 찾음
+
+활용 방안은 슈퍼바이즈는 classification, regression | unspervised는 clusetering, assocication 등 존재
+
+
+reinforcement - 개념만 설명
+
+
+Deep neural network 방법
+forward, backward 방식 - loss function 등 설명
+
+기술발전 과정 CNN -> rnn -> lstm -> transformer
+
+
+#### 9주차 2차시
+GAN(generative Adversanial network) : 기존 모델은 판별하는 모델이였음 (바로 윗줄) 근데 판별하는걸 배웠으니 생성하는것도 가능하겠다라는 아이디어에서 나옴
+
+GANs,VAEs, Diffusion Model 
+
+Latent Space : 잠재변수 
+Text Tokenizer -> Embedding -> Text Transformer -> Noise 
+
+
+생성방법은 창조적, 모방적 생성 두가지로 구분됨, 
+수집한 흔적 combination 및 choice -> 패턴에 대한 흔적 수집 -> 수집한 combination 및 choice -> 새로운 형태 생성
+창조적 모방 = 생성형 모델 
+
+
+그림은 2d이미지 또 뭐땜에 창조적 모방에 가까운데, 음악같은 경우는 수학적 원리에 기반하는게 많기 때문에 새로운 창조가 가능할 수 있음
+하고싶은 말은 분야마다 생성 방법론의 모방성이나 정도는 다룰 수 있다.
+
+
+#### 10주차 1차시
+
+LLM Basic(Large Language model)
+Large Scale Language model - LLM은 생성형 ai의 다양한 유형중 하나임
+문자로 기록돼 있는 데이터를 학습한 것, 사람이 문자로 쓰는 글들을 이해(LMM-Large multimodal model 라고도 부름)
+
+Large World model(LWM)로 진화하기도 함 
+
+말뭉치 -> 정제 -> 토큰화 -> 특수 토큰 삽입등 입력 형식 조정 -> 임베딩 -> 언어모델 학습 -> 추론
+
+
+메모리 용량에 영향을 주는 요인 : parameter 개수 그리고 성능 관련 기타등등
+
+#### 10주차 2차시 
+
+Foundation : 근본, 모든일 잘함, 비쌈 
+기존 AI 모델 : Skilled worker(한가지 일만 잘함, 경제적임)(LLM)
+
+GPT4-MOE : 8000장의 H100 장당 (지금 39,772,720won)
+한계를 모르기때문에 계속 학습중
+
+그리고 이것들은 학습시키고 다른곳에 fine-tuning하면 훨씬 좋음
+
+RAG(retrieval-Augmentation Generation) : 기본 개념은 검색증강이라 이해해도됨 범위를 벗어나지않고 답변을 얻고 싶음
+
+
+LLM inference은 데이터를 빠르게 받고, 답변해야함 
+stateful 지원시스템의 overhead가 만만치 않음 
+
+LLM은 검색시스템에 비해 계산량이 많아 10배이상 비용이 듬
+
+
+비용절감방법은 성장한 LLM을 fine-tuning하여 도메인에 맞쳐 활용, 아니면 작은 LLM을 개발
+특정 Inferencing이 아닌 general inferencing을 함 (그런 측면에서 deep seek가 쩔긴함)
+
+
+대한민국 현 상황 :
+3조정도 규모는 필요하고, 이정도면 reasonable 하다라고 함 
+국가자체가 세계적 기업에 비하면 작은 수준임(미국 중국만 hyper-scale cloud사업자를 유지할 수 있음)
+-> 사이즈 경쟁은 불가능 , 민간과 국가의 협력이 필요
+-> sovereign AI 국내 데이터는 국내만 운영하게 함(미국 CIA, Millitery)
+  ->민간의 cloud capability를 높이고 국가적 데이터의 주권을 수호해야함(내재화)
+
