@@ -908,3 +908,142 @@ LLM은 검색시스템에 비해 계산량이 많아 10배이상 비용이 듬
 -> sovereign AI 국내 데이터는 국내만 운영하게 함(미국 CIA, Millitery)
   ->민간의 cloud capability를 높이고 국가적 데이터의 주권을 수호해야함(내재화)
 
+
+#### 11주차 1차시
+
+Clusters - LLM같은거 학습할때 컴퓨터 많이 필요한데 어떻게 시스템을 설계할 것 인가?
+저장소에서 데이터를 AI에게 보내는 방법
+
+데이터의 지속적 공급이 없으면 작업이 중단되어 효율성이 떨어짐 - 따라서 효율적 효과적 인프라 구축이 필수임
+
+
+Computing Cluster, Storage Cluster - 모여서 한번에 쓸 수 있는 형태
+Scale out - 기본 장비에 장비를 추가하여 업그레이드 하는것(수평 스케일링(horizontal scaling)이라고 도 함), 경제성있음, 데이터를 받는 속도에 대해 한계가 있음
+Scale up - 기존의 서버보다 높은 사양을 다는 업그레이드(수직 스케일링(vertical scaling)이라고 도 함)
+
+내부 연결, 노드 간 연결, 노드 묶음과 연결 재료와 비용과 성능 차이가 있음
+Cluster 노드간 연결 optical fiber : 400~800Gbps(거리의 영향을 덜 받음) - 연결 부분의 비용 상승, 물리적 공간 차지 - 빠른 스피드를 위한 문 설치에 공간적 제약 및 많은 비용 발생, Cluster가 커지면 똑같은 양의 문 설치 가능 ,거리에 따른 속도 차이는 존재
+
+Scale up은 interconnect를 훨씬 더 타이트하고 빠르게 만듬 speed up 하여 타이트한 clustering 함 -> 훨씬 더 큰 규모 scaling가능
+
+
+
+##### cluster 역사
+1992년 시작, *BeoWulf cluster* - 가볍게 연결된 상태의 cluster
+2002 이후 분산된 이형질의 Cluster를 묶어서 사용하는 기법 탐색 - *Grid Computing* 제한된 영역에서 확산됨 
+2012 다음엔 Cloud 원격에서 사용할 수 있는 클러스터 Cloud concept 비즈니스(AWS) - 최초로 Cloud 기술 상업화
+2024 Hyper-scale Cloud 전세계 규모
+
+클러스터는 네트워크의 발전과 같이 따라감
+CPU 중심의 HPC
+*MPI(Message Passing Interface)* - 노드들끼리 대화하는 방법
+컴퓨터 내부 소켓별 CPU안에 있는 조각이 나와서 코어가 됨 - 멀티CPU , 이러면 생기는 문제는 코어간의 일도 다시 나눠야함 -> 이때 나온게 *OpenMP*라는 기법이 나옴 이건 코어들에게 분배하고 MPI를 통해 다양한 컴퓨터의 CPU에게 작업 분할 하는 방법임
+
+
+Storage의 데이터 공급 기술은 초반엔 병렬 파일 시스템을 기반으로 가속시킴 최근에는 SSD를 Combination 해서 가속을 증가시킴 (SSD Caching Layer 활용)
+
+
+Parallel HPC Cluster - Configure를 자동으로 업데이트하면서 새로운 버전 준비, 모든 노드가 동기화 되어 한번에 작업을 수행하는 체제임
+SuperComputer - 노드의 개수 증가, Powerful한 노드, 가장빠른 최신형 네트워크, 최신 CPU, GPU
+
+
+#### 11주차 2차시
+클러스터와 AI
+
+AI Computing - 데이터 계산, 데이터 분석
+
+HPC SYstem에선 HPC cluster와 (HPDA)Bigdata Cluster가 따로 분리됨
+역할도 계산 가능 자원 중점적이고, 데이터 탐색 및 분석에 중점적으로 분리됨
+
+요즘엔 유사한 하드웨어를 사용하는 형태로 진화 
+
+
+과거 : 노드나 머신에 계싼, 분석 등의 소프트웨어 기능을 미리 탑재함, boot -> configure 시 미리 탑재 -> 데이터 처리
+현재 : Cloud orchestration, 자동화된 리소스 관리, 최적의 작업 할당, 유연성 극대화
+
+
+Cloud-native 방법론 : Resource Pool - Storage Cluster의 Support
+-> Parallel file system 기반의 빠른 데이터 Access 기능 탑재
+
+GPU Resource 커버, CPU중심으로 데이터 처리 Combination Cluster
+
+다기능 시스템을 만드는 이유 - 계산 및 분석의 불규칙한 수요, 가장 큰 일을 할 때 필요한 크기를 대비
+Configurable cluster 방법론 사용 -> Efficiency 향상, total cost와 operation감소, 소프트 웨어의 지원을 통한 오버헤드 해결
+
+따로 떨어져 있는 GPU를 PCI Express 방식으로 연결, NVLink - 
+Nvidia DGX2 - GPU 8장을 NV Switch로 연결해서 16장을 하나로 만든 시스템, infiniband Switch를 통해 다른 노드와 교류 -> Bottle neck 최소화 
+
+
+GB200 NVL72 Backplane - Blackwell, Rack-scale computing (Rack 중심의 디자인으로 변환)
+18(Rack) X 2(방) X 2(방당 GPU) - scale up 예시
+
+
+전력 소모량
+일반 GPU 서버 : 5~10kW, DGX-A100 : 30~40kW, GB200 NVL72 : 120kW
+
+NIM - cloud native 방법론의 핵심 -> Cuda capability를 통해 다양한 ai application build-up
+<img width="888" height="779" alt="image" src="https://github.com/user-attachments/assets/4ea3852e-0be4-4ea8-940b-6cdc3e29a7be" />
+
+패키징 된 Container를 Orchestrate 해야 함
+이걸 해주는게 nvidia inferencing models-Nemo-Omniverse (연결성 같은 건 NVIDIA가 해줄테니 우리 제품 사라)
+
+
+#### 12주차 1차시
+
+DNA에서 필요한건 많은 데이터를 Networking을 통해서 AI를 할 수 있는 엔진에 공급
+
+Virtual machine : 머신을 나눠서 작은 가상적인 머신을 만드는데 집중, 각 방에 function 세팅 
+장점 : function 실행 및 안정적, 독립성 유지, 보안 문제 해결 | 단점 : resource를 한번 세팅하면 다른 function에 적용하기 힘듬, 자원적 효율적 활용 측면에서 문제 야기
+
+이런 문제를 해결하기 위해선 Harmonization
+Container : 호환성 있는 소프트웨어 실행 환경 지원, 독자적 작업 수행을 위한 최소한의 준비
+
+Physical Machine - partition-enabled, Machine을 partitioning 해서 완전히 분리한 것
+
+
+Resuorce를 나누는 다양한 방법과 제공형태에 따라 function 조정
+
+
+provision - REsource를 준비해서 쓸 수 있게 만드는 것
+Orchestration - 다양하게 활용 방안
+Visibility - orchestration을 위해 resource의 작동 및 상태를 모니터링 하는 능력
+
+
+CPU Sharing 코어 고정적 할당, 코어 일시적 사용
+Virtual Switch가 Physical Machine 안에 들가 있음
+
+NIC(network interface card) IO operation, IO MMU, IO seperation
+Hardware Network Card 
+
+
+HyperVisor - Virtual Machine을 만들 수 있는 도구(type1,2있음)
+
+KVM
+
+Compute Virtualization, Network Virtualization
+
+#### 12주차 2차시
+
+Namespaces :
+cgroups : Resource
+libcontatiner, libvirt(ligth-weight process container)
+Machine containers : Virtual machin, process container의 중간같은 느낌
+
+컨테이너의 종류가 많다보니 호환이 안될때가 있음
+그걸 위해서 OCI(open container initiative) 호환성을 확보할 수 있는 수단 : 최종적으로 만들어진 환경, 환경 호환성을 가진 continaer 자체, CRI(container Runtime interface)
+Container-d, rkt,cri-o, harbor 등 다양한게 존재 
+
+
+Sandbox 컨테이너가 하면 안되는 일을 하는지 체크하는 시스템 , 불필요한 시스템 콜 차단
+Nabla도 비슷함 
+kata 작업 범위 확산 제한
+firecracker Virtual Machine을 활용한 protection Layer 강화 및 경량화, VMM 추가로 보안 강화
+
+
+Container security 이미지 스캔닝, 지속적 모니터링 
+
+
+클라우드 네이티브 컴퓨팅의 security 
+정리 : physical virtual continerized harmonization, partition-enabled virtual containerized harmonization 
+Virtual Switch 
+
