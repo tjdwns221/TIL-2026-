@@ -988,62 +988,261 @@ NIM - cloud native 방법론의 핵심 -> Cuda capability를 통해 다양한 ai
 이걸 해주는게 nvidia inferencing models-Nemo-Omniverse (연결성 같은 건 NVIDIA가 해줄테니 우리 제품 사라)
 
 
-#### 12주차 1차시
+### 12주차 1차시 – Virtualization & Containerization
 
-DNA에서 필요한건 많은 데이터를 Networking을 통해서 AI를 할 수 있는 엔진에 공급
+## 1. 데이터와 AI 인프라
+DNA에서 핵심은 **대량의 데이터를 네트워킹을 통해 AI 엔진에 공급**하는 것이다.  
+이를 위해 컴퓨팅 자원을 효율적으로 나누고 관리하는 기술이 필요하다.
 
-Virtual machine : 머신을 나눠서 작은 가상적인 머신을 만드는데 집중, 각 방에 function 세팅 
-장점 : function 실행 및 안정적, 독립성 유지, 보안 문제 해결 | 단점 : resource를 한번 세팅하면 다른 function에 적용하기 힘듬, 자원적 효율적 활용 측면에서 문제 야기
+---
 
-이런 문제를 해결하기 위해선 Harmonization
-Container : 호환성 있는 소프트웨어 실행 환경 지원, 독자적 작업 수행을 위한 최소한의 준비
+## 2. Virtual Machine (VM)
 
-Physical Machine - partition-enabled, Machine을 partitioning 해서 완전히 분리한 것
+**Virtual Machine**은 하나의 물리 머신을 여러 개의 가상 머신으로 분할하여  
+각각 독립적인 OS와 실행 환경을 제공하는 기술이다.
 
+### 장점
+- 기능(Function) 실행 안정성
+- 완전한 독립성
+- 보안 격리 우수
 
-Resuorce를 나누는 다양한 방법과 제공형태에 따라 function 조정
+### 단점
+- 자원 고정 할당 → 다른 서비스로 재활용 어려움
+- 전체 자원 활용 효율이 낮음
+- 오버헤드 큼 (OS 중복)
 
+---
 
-provision - REsource를 준비해서 쓸 수 있게 만드는 것
-Orchestration - 다양하게 활용 방안
-Visibility - orchestration을 위해 resource의 작동 및 상태를 모니터링 하는 능력
+## 3. Container
 
+**Container**는 애플리케이션 실행에 필요한 최소한의 환경만 포함한  
+경량화된 실행 단위이다.
 
-CPU Sharing 코어 고정적 할당, 코어 일시적 사용
-Virtual Switch가 Physical Machine 안에 들가 있음
+### 특징
+- OS 커널 공유
+- 빠른 실행
+- 높은 자원 효율
+- 이식성(Portability) 우수
 
-NIC(network interface card) IO operation, IO MMU, IO seperation
-Hardware Network Card 
+> VM은 "방 하나당 집 한 채",  
+> 컨테이너는 "방 하나당 가구 세트" 느낌.
 
+---
 
-HyperVisor - Virtual Machine을 만들 수 있는 도구(type1,2있음)
+## 4. Physical Machine Partitioning
 
-KVM
+- 하나의 물리 머신을 **하드웨어 수준에서 완전히 분할**
+- CPU, Memory, I/O까지 강제 분리
+- 클라우드 사업자 레벨에서 사용
 
-Compute Virtualization, Network Virtualization
+---
 
-#### 12주차 2차시
+## 5. Resource 관리 개념
 
-Namespaces :
-cgroups : Resource
-libcontatiner, libvirt(ligth-weight process container)
-Machine containers : Virtual machin, process container의 중간같은 느낌
+| 개념 | 의미 |
+|------|------|
+| Provisioning | 자원을 사용할 수 있게 준비 |
+| Orchestration | 자원을 자동으로 배치/조정 |
+| Visibility | 자원의 상태를 관측 |
+| Tracing | 요청 흐름 추적 |
+| Observability | 시스템 내부 상태를 외부에서 추론 |
 
-컨테이너의 종류가 많다보니 호환이 안될때가 있음
-그걸 위해서 OCI(open container initiative) 호환성을 확보할 수 있는 수단 : 최종적으로 만들어진 환경, 환경 호환성을 가진 continaer 자체, CRI(container Runtime interface)
-Container-d, rkt,cri-o, harbor 등 다양한게 존재 
+---
 
+## 6. Virtual Networking
 
-Sandbox 컨테이너가 하면 안되는 일을 하는지 체크하는 시스템 , 불필요한 시스템 콜 차단
-Nabla도 비슷함 
-kata 작업 범위 확산 제한
-firecracker Virtual Machine을 활용한 protection Layer 강화 및 경량화, VMM 추가로 보안 강화
+### Virtual Switch
+- 물리 머신 내부에 존재
+- VM/Container 간 네트워크 연결 담당
 
+### NIC & I/O
+- NIC(Network Interface Card)
+- IOMMU → 장치 접근 제어
+- I/O separation → 보안 격리
 
-Container security 이미지 스캔닝, 지속적 모니터링 
+---
 
+## 7. Hypervisor
 
-클라우드 네이티브 컴퓨팅의 security 
-정리 : physical virtual continerized harmonization, partition-enabled virtual containerized harmonization 
-Virtual Switch 
+**Hypervisor**는 VM을 생성하고 관리하는 계층.
+
+| 타입 | 특징 |
+|------|------|
+| Type 1 | Bare-metal (ESXi, KVM) |
+| Type 2 | Host OS 위 (VirtualBox) |
+
+> KVM은 Linux 커널에 내장된 Type1 Hypervisor.
+
+---
+
+# 12주차 2차시 – Container Internals & Security
+
+## 1. Namespaces & cgroups
+
+### Namespaces
+- 프로세스 격리 (PID, Network, Mount 등)
+
+### cgroups
+- CPU, Memory, I/O 자원 제한
+
+---
+
+## 2. Container 표준화
+
+컨테이너 런타임이 많아 호환성 문제 발생 → **OCI 등장**
+
+### OCI(Open Container Initiative)
+- 이미지 포맷 표준
+- 런타임 인터페이스 표준
+
+### CRI(Container Runtime Interface)
+Kubernetes와 런타임 연결 표준
+
+| 런타임 |
+|--------|
+| containerd |
+| cri-o |
+| rkt |
+| harbor |
+
+---
+
+## 3. Container Security
+
+### Sandbox 계열
+- seccomp: 시스템 콜 제한
+- Nabla: MicroVM 기반
+- Kata: VM+컨테이너 혼합
+- Firecracker: AWS 경량 VM
+
+> 목적: **컨테이너 탈출 방지**
+
+---
+
+# 13주차 1차시 – Cloud Native Architecture
+
+## 1. Unikernel
+- OS 없이 앱만 단일 이미지로 실행
+- 매우 빠르고 가벼움
+- 디버깅 어렵고 범용성 낮음
+
+---
+
+## 2. Serverless
+이벤트 기반 함수 실행 모델
+
+### 특징
+- 서버 관리 불필요
+- 자동 확장
+- 사용량 기반 과금
+
+예시:
+- AWS Lambda  
+- Apache OpenWhisk  
+- Kubernetes-native FaaS
+
+---
+
+## 3. MSA (Microservices Architecture)
+
+### 핵심 아이디어
+기능을 서비스 단위로 분리 → 독립 배포 가능
+
+### 장점
+- 부분 수정 가능
+- 빠른 업데이트
+- 장애 격리
+
+---
+
+## 4. Cloud Native 핵심 표준
+
+| 표준 | 역할 |
+|------|------|
+| OCI | 컨테이너 이미지 |
+| CNI | 네트워크 |
+| CSI | 스토리지 |
+| SMI | 서비스 메시 |
+
+---
+
+## 5. Kubernetes Networking
+
+### CNI
+- Pod 단위 IP 제공
+- 모든 Pod가 서로 직접 통신
+
+예:
+- Calico  
+- Cilium
+
+---
+
+## 6. Storage
+
+| 개념 |
+|------|
+| Container FS: 임시 |
+| PV: 영구 저장 |
+| PVC: Pod에서 요청 |
+
+---
+
+## 7. Ingress
+
+- Ingress: 트래픽 라우팅 규칙
+- Ingress Controller: 실제 라우팅 수행
+
+> Ingress = 교통 법규  
+> Controller = 경찰
+
+---
+
+## 8. Monitoring 개념 정리
+
+| 용어 | 의미 |
+|------|------|
+| Logging | 기록 |
+| Monitoring | 상태 감시 |
+| Tracing | 요청 흐름 |
+| Observability | 시스템 추론 능력 |
+| Visibility | 모든 것의 상위 개념 |
+
+---
+
+# Service Mesh
+
+**Service Mesh**는 마이크로서비스 간 통신을  
+자동으로 관리해주는 네트워크 레이어이다.
+
+### 해결 문제
+- 인증
+- 암호화
+- 트래픽 제어
+- 장애 격리
+
+예:
+- Istio  
+- Linkerd  
+- Cilium Mesh
+
+---
+
+# GitOps / DevOps / Helm
+
+> **운영 인프라 자체를 코드로 관리하는 문화**
+
+| 도구 | 역할 |
+|------|------|
+| GitOps | Git이 운영의 단일 진실 |
+| Helm | Kubernetes 패키지 매니저 |
+| DevOps | 개발+운영 통합 문화 |
+
+---
+
+# 전체 요약
+
+> **AI 인프라는  
+> 물리 → 가상 → 컨테이너 → 클라우드 네이티브 → 자동화 운영으로 진화했다.**
+
 
