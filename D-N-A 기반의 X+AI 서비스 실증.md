@@ -1240,9 +1240,124 @@ Kubernetes와 런타임 연결 표준
 
 ---
 
-# 전체 요약
-
 > **AI 인프라는  
 > 물리 → 가상 → 컨테이너 → 클라우드 네이티브 → 자동화 운영으로 진화했다.**
 
+
+# 13주차 2차시 – Cloud Computing & Data Center
+
+## 1. Cloud Computing 개요
+
+Cloud Computing은 **컴퓨팅 자원을 네트워크를 통해 서비스 형태로 제공**하는 모델이다.
+
+### 서비스 모델
+
+| 모델 | 의미 |
+|------|------|
+| IaaS | Infrastructure as a Service (VM, Storage, Network) |
+| PaaS | Platform as a Service (Runtime, Framework) |
+| SaaS | Software as a Service (완성된 애플리케이션) |
+
+---
+
+## 2. Data Center
+
+**Data Center**는 대규모 컴퓨팅 장비를 집적하여  
+에너지와 네트워크를 기반으로 운영되는 복합 인프라(SOC)이다.
+
+### 특징
+- 서버, 스토리지, 네트워크 장비 집합
+- 대량 전력 소비
+- 냉각 시스템 필수
+- 혐오시설처럼 인식되기도 함 (입지 갈등)
+- 전력 확보가 가장 큰 현실적 이슈
+
+---
+
+## 3. Cooling System
+
+### 냉각 방식
+- Air Cooling (공랭)
+- Water Cooling (수랭)
+
+### PUE (Power Usage Effectiveness)
+데이터센터 효율 지표
+
+PUE = 전체 소비 전력 / IT 장비 전력
+
+| 값 | 의미 |
+|----|------|
+| 1.0 | 이상적 (낭비 없음) |
+| 1.5 | 매우 우수 |
+| 2.0 | 비효율 (절반이 낭비) |
+
+---
+
+## 4. Data Center Networking
+
+### Fat Tree Topology
+- 대규모 서버 간 트래픽 처리 구조
+- 스파인-리프 구조 기반
+- 동서 트래픽(East-West) 최적화
+
+---
+
+## 5. 3-Tier Application Pattern
+
+전통적인 웹 서비스 구조
+
+| 계층 | 역할 |
+|------|------|
+| Presentation | UI / Frontend |
+| Application | 비즈니스 로직 |
+| Data | DB / Storage |
+
+---
+
+## 6. OCP (Open Compute Project)
+
+**Open Compute Project**는  
+대형 클라우드 사업자들이 주도한  
+**하드웨어 오픈소스 생태계**이다.
+
+### 목적
+- 서버/랙/전원 설계 공개
+- 제조 비용 절감
+- 커스터마이징 비용 감소
+- 벤더 종속성 탈피
+
+---
+
+## 7. 생태계 거꾸로 프레임워크
+
+전통:
+하드웨어 → OS → 플랫폼 → 서비스
+
+클라우드:
+서비스 요구 → 플랫폼 → 인프라 → 하드웨어
+
+> 즉, **서비스 중심으로 인프라가 설계되는 구조**
+
+---
+
+## 8. Cloud Pulse
+
+Cloud Pulse는  
+**클라우드 인프라 상태를 실시간으로 측정하는 메트릭 개념**
+
+- 성능
+- 지연
+- 트래픽
+- 장애
+
+→ 클라우드 운영의 "심박수"
+
+---
+
+# 전체 요약
+
+> **Cloud는  
+> Data Center라는 물리 인프라 위에서  
+> 전력, 냉각, 네트워크 효율을 극대화하여  
+> 서비스 형태로 컴퓨팅을 제공하는 시스템이다.**
 
