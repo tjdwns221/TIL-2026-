@@ -1361,3 +1361,28 @@ Cloud Pulse는
 > 전력, 냉각, 네트워크 효율을 극대화하여  
 > 서비스 형태로 컴퓨팅을 제공하는 시스템이다.**
 
+
+
+# 14~15주차
+
+bits, neurons, qubits
+RPA
+
+전체적인 정리 느낌
+
+# 16주
+
+디지털 트윈 : 현실버전에서 cyber 버전으로 옮기면서 나타나는 형태 
+모든걸 똑같이 할 필요는 없고 필요한 구역만 twin 하는게 좋음
+
+3M - Mirroring, Monitoring, Modeling
+
+지속적 업데이트 필요, training inferencing
+
+바로 디지털 트윈을 만드는건 어렵기 때문에, model -> Shadow -> twin 순으로 개발 가능
+
+결국 현실의 모방하려면 data가 필요하고,  USD(Universal Scene Description) ->  3차원 공간의 Description
+
+
+Omniverse - ISAAC
+
